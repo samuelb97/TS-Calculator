@@ -1,0 +1,56 @@
+{
+  "name": "ts-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "webpack serve --config ./webpack/webpack.dev.config.ts",
+    "build": "webpack --config ./webpack/webpack.prod.config.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@babel/runtime": "^7.16.3",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
+    "@types/jest": "^27.0.3",
+    "@types/react": "^17.0.36",
+    "@types/react-dom": "^17.0.11",
+    "@types/styled-components": "^5.1.15",
+    "@types/webpack-dev-server": "^4.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^8.3.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-webpack-plugin": "^3.1.1",
+    "fork-ts-checker-webpack-plugin": "^6.4.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.3.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/jest-setup.ts"
+    ]
+  }
+}
