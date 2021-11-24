@@ -10,7 +10,7 @@ const config: Configuration = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve("build"),
-    filename: "[name].[contenthash].js",
+    filename: "[name].js",
     publicPath: "",
   },
   module: {

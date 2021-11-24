@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: CodeBuild / S3 / Route53 / CloudFront CloudFormation configuration
+Description: CodePipeline / CodeBuild / S3 / CloudFormation configuration
 
 Parameters: 
   Env:
