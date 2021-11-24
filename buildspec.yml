@@ -12,3 +12,4 @@ artifacts:
   files:
     - build/index.html
     - build/main.js
+  discard-paths: yes
