@@ -85,7 +85,7 @@ class Calculator {
     let result;
     try {
       this.parse(expression);
-      result = this.executeOutputStack();
+      result = this.evaluate();
     } catch (err) {
       result = err as CalculatorError;
     }
@@ -99,7 +99,7 @@ class Calculator {
    * @returns numb
    * @throws {CalculatorError}
    */
-  executeOutputStack(): number {
+  evaluate(): number {
     const numberStack: number[] = [];
     while (this.outputStack.length) {
       const token = this.outputStack.shift() as OutputStackToken;
@@ -253,7 +253,6 @@ class Calculator {
       operand = operand + char;
       this.iterator++;
     }
-    operand = operand.toLowerCase();
     this.lastToken = operand; 
 
     // Parse number and set to negative if negative flag is set
@@ -274,7 +273,7 @@ class Calculator {
 
     // Set negative flag if operater is - and is first token or last token was 
     // an operator
-    if (operator === "-" && (!this.lastToken || this.isOperator(this.lastToken))) {
+    if (this.shouldSetNegativeFlag(operator)) {
       if(this.negativeFlag) {
         throw Calculator.SYNTAX_ERROR;
       }
@@ -371,7 +370,7 @@ class Calculator {
    * @param operator operator to compare to current operator stack
    * @returns
    */
-  operatorShouldPop(operator: OrderedOperator) {
+  operatorShouldPop(operator: OrderedOperator): boolean {
     if (!this.operatorStack.length) return false;
     if (_.last(this.operatorStack) === "(") return false;
     if (this.isFunction(_.last(this.operatorStack) as string)) {
@@ -397,12 +396,26 @@ class Calculator {
   }
 
   /**
+   * Checks if current operator is '-' and determines whether it should treated
+   * as an operator or to negate the next read number
+   * @param operator 
+   */
+  shouldSetNegativeFlag(operator: OperatorStackOperator): boolean {
+    if(operator !== '-') return false;
+    if(!this.lastToken) return true;
+    if(this.isOperator(this.lastToken) && this.lastToken !== ')') {
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * inserts an operand into the string at the current iterator index and 
    * returns new expression
    * @param expression 
    * @param operator operator to insert into expression
    */
-  insertOperand(expression: string, operator: OutputStackOperator) {
+  insertOperand(expression: string, operator: OutputStackOperator): string {
     return expression.substr(0, this.iterator) + operator 
       + expression.substr(this.iterator, expression.length)
   }

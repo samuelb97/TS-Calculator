@@ -94,6 +94,9 @@ test('Calculator: calculate', () => {
 
 
   expect(Calculator.calculate('(7 +1) * sqrt(72) / cos(5 -3^9) * log(5098)')).toBeCloseTo(424.606324);
+
+  expect(Calculator.calculate('(4)-3')).toBe(1);
+  expect(Calculator.calculate('4 + 9 - 1 (cos(4)) - (sin(2))^-1')).toBeCloseTo(12.55389);
   
 
   expect(Calculator.calculate('log*')).toBe('Syntax Error');
