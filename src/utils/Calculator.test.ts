@@ -100,4 +100,6 @@ test('Calculator: calculate', () => {
 
   expect(Calculator.calculate('/log4')).toBe('Syntax Error');
 
+  expect(Calculator.calculate('5 - - 10')).toBe(15);
+  expect(Calculator.calculate('5 - - - 10')).toBe('Syntax Error');
 })

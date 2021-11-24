@@ -275,6 +275,9 @@ class Calculator {
     // Set negative flag if operater is - and is first token or last token was 
     // an operator
     if (operator === "-" && (!this.lastToken || this.isOperator(this.lastToken))) {
+      if(this.negativeFlag) {
+        throw Calculator.SYNTAX_ERROR;
+      }
       this.negativeFlag = true;
     } 
     else if (operator === "(") {
