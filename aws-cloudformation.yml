@@ -2,55 +2,12 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: CodePipeline / CodeBuild / S3 / CloudFormation configuration
 
 Parameters: 
-  Env:
-    Type: String
-    Default: develop
-    AllowedValues:
-      - dev
-      - prod 
-    Description: 'Define the environment to deploy. Environment values are "dev" and "prod"'
-
-  AwsCertificateArn:
-    Type: String
-    Default: <certification-arn>
-    Description: Create certificate before CloudFormation stack so the value is fixed
-
-  AwsRoute53CloudFrontHostedZoneId:
-    Type: String
-    Default: <hosted-zone-id>
-    Description: CloudFront resources HostedZoneId
 
 Mappings: 
-  EnvironmentMaps:
-    dev:
-      "CloudFrontPriceClass": PriceClass_100
-      "Domain": <Development Domain URL>
-      "Route53HostedZoneName": <Development Route 53 Hosted Zone Name>
-      "S3BucketName": <Development S3 Bucket Name>
-    prod:
-      "CloudFrontPriceClass": PriceClass_All
-      "Domain": <Production Domain URL>
-      "Route53HostedZoneName": <Production Route 53 Hosted Zone Name>
-      "S3BucketName": <Production S3 Bucket Name>
 
 Conditions: 
 
 Resources: 
-  # This will be used in the S3 Bucket policy to identify the CloudFront 
-  # resource which is allowed to access the S3 Content
-  CalculatorCloudFrontIdentity:
-    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
-    Properties:
-      CloudFrontOriginAccessIdentityConfig:
-        Comment: !Join ["", ["CalculatorApp (", !Ref Env, ") Origin Access Identity"]]
-
-  # 
-  CalculatorS3Bucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !FindInMap [EnvironmentMaps, !Ref Env, "S3BucketName"]
-
-  BucketPolicy:
-    Type: 
+ 
 
 Outputs:
