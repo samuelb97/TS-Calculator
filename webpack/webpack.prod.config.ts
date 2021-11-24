@@ -9,7 +9,7 @@ const config: Configuration = {
   mode: "production",
   entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve("build"),
     filename: "[name].[contenthash].js",
     publicPath: "",
   },
