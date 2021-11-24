@@ -70,7 +70,7 @@ test('Calculator: parse', () => {
 
 test('Calculator: calculate', () => {
   Calculator.reset();
-  expect(Calculator.calculate('3 + 4')).toBe(6);
+  expect(Calculator.calculate('3 + 4')).toBe(7);
   expect(Calculator.calculate('3 - 10')).toBe(-7);
   expect(Calculator.calculate('3 * 4')).toBe(12);
   expect(Calculator.calculate('10 / 4')).toBe(2.5);
