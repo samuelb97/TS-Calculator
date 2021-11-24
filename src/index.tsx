@@ -15,13 +15,8 @@ const App = () => {
 
   useEffect(() => {
     if(text) {
-      try {
-        const result = Calculator.calculate(text);
-        setResult(`${result}`)
-      }
-      catch(err) {
-        setResult(err as string)
-      }
+      const result = Calculator.calculate(text);
+      setResult(`${result}`)
     } else {
       setResult('');
     }
