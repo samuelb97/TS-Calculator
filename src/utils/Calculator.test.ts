@@ -18,6 +18,25 @@ test('Calculator: isOperator', () => {
   expect(Calculator.isOperator('')).toBe(false);
 })
 
+test('Calculator: isLetter', () => {
+  expect(Calculator.isLetter('0')).toBe(false);
+  expect(Calculator.isLetter('p')).toBe(true);
+  expect(Calculator.isLetter('+')).toBe(false);
+  expect(Calculator.isLetter('')).toBe(false);
+  expect(Calculator.isLetter('k')).toBe(true);
+  expect(Calculator.isLetter('S')).toBe(true);
+})
+
+test('Calculator: isFunction', () => {
+  expect(Calculator.isFunction('sint')).toBe(false);
+  expect(Calculator.isFunction('cos')).toBe(true);
+  expect(Calculator.isFunction('sqrt')).toBe(true);
+  expect(Calculator.isFunction('posfj')).toBe(false);
+  expect(Calculator.isFunction('tan')).toBe(true);
+  expect(Calculator.isFunction('ln')).toBe(true);
+})
+
+
 test('Calculator: processOperand', () => {
   Calculator.reset();
   Calculator.processOperand('4.32')
@@ -62,4 +81,23 @@ test('Calculator: calculate', () => {
   expect(Calculator.calculate('3(4 - 1)')).toBe(9);
   expect(Calculator.calculate('(5)(4)(3)')).toBe(60)
   expect(Calculator.calculate('(4 - 1)9')).toBe(27);
+
+  expect(Calculator.calculate('log(100)')).toBe(2);
+  expect(Calculator.calculate('ln(9)')).toBeCloseTo(2.19722457734);
+  expect(Calculator.calculate('(log(1000 - 900) + 2) * 6')).toBe(24);
+
+  expect(Calculator.calculate('sqrt(81)')).toBe(9);
+  expect(Calculator.calculate('sin(8)')).toBeCloseTo(0.9893);
+  expect(Calculator.calculate('cos(-90)')).toBeCloseTo(-0.44807);
+  expect(Calculator.calculate('tan(71)')).toBeCloseTo(-3.07762);
+  
+
+
+  expect(Calculator.calculate('(7 +1) * sqrt(72) / cos(5 -3^9) * log(5098)')).toBeCloseTo(424.606324);
+  
+
+  expect(Calculator.calculate('log*')).toBe('Syntax Error');
+
+  expect(Calculator.calculate('/log4')).toBe('Syntax Error');
+
 })
