@@ -238,6 +238,10 @@ class Calculator {
    * @returns {string} expression with modifications if necessary
    */
   processOperand(expression: string): string {
+    // Throw error in event of cos9 and not cos(9)
+    if(this.isFunction(this.lastToken)) {
+      throw Calculator.SYNTAX_ERROR;
+    }
     // insert a "*" in a case such as (4-1)3 to be (4-1)*3
     if(this.lastToken === ')') {
       return this.processOperator(
