@@ -4,6 +4,10 @@ phases:
   install:
     commands:
       - npm install
+  pre_build:
+    on-failure: ABORT
+    commands:
+      - npm run test
   build:
     commands:
       - npm run build
