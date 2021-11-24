@@ -10,5 +10,4 @@ phases:
 
 artifacts:
   files:
-    - build/index.html
-    - main.js
+    - build/*
